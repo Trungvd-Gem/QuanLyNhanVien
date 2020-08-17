@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Employees\" />
-    <Folder Include="System\Users\" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QuanLyNhanVien.Application\QuanLyNhanVien.Application.csproj" />
     <ProjectReference Include="..\QuanLyNhanVien.Data\QuanLyNhanVien.Core.csproj" />
     <ProjectReference Include="..\QuanLyNhanVien.ViewModel\QuanLyNhanVien.ViewModels.csproj" />
   </ItemGroup>

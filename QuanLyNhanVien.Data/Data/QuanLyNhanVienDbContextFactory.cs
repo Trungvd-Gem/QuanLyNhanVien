@@ -23,6 +23,9 @@ namespace QuanLyNhanVien.Core.Data
             var optionsBuilder = new DbContextOptionsBuilder<QuanLyNhanVienDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
             return new QuanLyNhanVienDbContext(optionsBuilder.Options);
+
+
+           
         }
     }
 }

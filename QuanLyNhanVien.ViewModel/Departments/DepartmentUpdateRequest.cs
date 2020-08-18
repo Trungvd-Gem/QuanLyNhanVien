@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuanLyNhanVien.Core.Entities
+namespace QuanLyNhanVien.ViewModels.Departments
 {
-    public class Department: EntityBase
+    public class DepartmentUpdateRequest
     {
-        /*public int DepartmentID { get; set; }*/
+        public int DepartmentID { get; set; }
         public string DepartmentName { get; set; }
         public string Description { get; set; }
-
-        public List<Employee> Employees { get; set; }
     }
 }

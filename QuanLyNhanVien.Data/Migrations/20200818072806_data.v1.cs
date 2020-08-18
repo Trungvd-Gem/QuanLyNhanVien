@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanLyNhanVien.Core.Migrations
 {
-    public partial class Initdb : Migration
+    public partial class datav1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,14 +50,15 @@ namespace QuanLyNhanVien.Core.Migrations
                 name: "Departments",
                 columns: table => new
                 {
-                    DepartmentID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedDate = table.Column<DateTime>(nullable: false),
                     DepartmentName = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departments", x => x.DepartmentID);
+                    table.PrimaryKey("PK_Departments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,54 +171,25 @@ namespace QuanLyNhanVien.Core.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    EmployeeID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartmentID = table.Column<int>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedDate = table.Column<DateTime>(nullable: false),
+                    DepartmentID = table.Column<Guid>(nullable: false),
                     FullName = table.Column<string>(maxLength: 50, nullable: false),
-                    Birthday = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 8, 14, 17, 2, 20, 194, DateTimeKind.Local).AddTicks(5412)),
+                    Birthday = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 8, 18, 14, 28, 6, 51, DateTimeKind.Local).AddTicks(9)),
                     Adrress = table.Column<string>(maxLength: 50, nullable: false),
                     Email = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.EmployeeID);
+                    table.PrimaryKey("PK_Employees", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Employees_Departments_DepartmentID",
                         column: x => x.DepartmentID,
                         principalTable: "Departments",
-                        principalColumn: "DepartmentID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Departments",
-                columns: new[] { "DepartmentID", "DepartmentName", "Description" },
-                values: new object[] { 1, "Kinh Doanh", "Tăng lợi nhuận" });
-
-            migrationBuilder.InsertData(
-                table: "Departments",
-                columns: new[] { "DepartmentID", "DepartmentName", "Description" },
-                values: new object[] { 2, "IT", "Phát triển phần mềm" });
-
-            migrationBuilder.InsertData(
-                table: "Departments",
-                columns: new[] { "DepartmentID", "DepartmentName", "Description" },
-                values: new object[] { 3, "Nhân sự", "Tìm kiếm tài năng" });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeID", "Adrress", "Birthday", "DepartmentID", "Email", "FullName" },
-                values: new object[] { 1, "Bac Ninh", new DateTime(1993, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "trung@gmail.com", "Vu Duc Trung" });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeID", "Adrress", "Birthday", "DepartmentID", "Email", "FullName" },
-                values: new object[] { 2, "Thanh Hoa", new DateTime(1997, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "hung@gmail.com", "Nguyen Van Hung" });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeID", "Adrress", "Birthday", "DepartmentID", "Email", "FullName" },
-                values: new object[] { 3, "Nam Dinh", new DateTime(1999, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "nam@gmail.com", "Hoang Van Nam" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

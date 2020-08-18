@@ -217,12 +217,12 @@ namespace QuanLyNhanVien.Core.Migrations
 
             modelBuilder.Entity("QuanLyNhanVien.Core.Entities.Department", b =>
                 {
-                    b.Property<int>("DepartmentID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DepartmentName")
                         .IsRequired()
@@ -234,39 +234,19 @@ namespace QuanLyNhanVien.Core.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-                    b.HasKey("DepartmentID");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            DepartmentID = 1,
-                            DepartmentName = "Kinh Doanh",
-                            Description = "Tăng lợi nhuận"
-                        },
-                        new
-                        {
-                            DepartmentID = 2,
-                            DepartmentName = "IT",
-                            Description = "Phát triển phần mềm"
-                        },
-                        new
-                        {
-                            DepartmentID = 3,
-                            DepartmentName = "Nhân sự",
-                            Description = "Tìm kiếm tài năng"
-                        });
                 });
 
             modelBuilder.Entity("QuanLyNhanVien.Core.Entities.Employee", b =>
                 {
-                    b.Property<int>("EmployeeID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Adrress")
                         .IsRequired()
@@ -276,10 +256,13 @@ namespace QuanLyNhanVien.Core.Migrations
                     b.Property<DateTime>("Birthday")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2020, 8, 14, 17, 2, 20, 194, DateTimeKind.Local).AddTicks(5412));
+                        .HasDefaultValue(new DateTime(2020, 8, 18, 14, 28, 6, 51, DateTimeKind.Local).AddTicks(9));
 
-                    b.Property<int>("DepartmentID")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DepartmentID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -291,40 +274,14 @@ namespace QuanLyNhanVien.Core.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.HasKey("EmployeeID");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("DepartmentID");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeID = 1,
-                            Adrress = "Bac Ninh",
-                            Birthday = new DateTime(1993, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentID = 1,
-                            Email = "trung@gmail.com",
-                            FullName = "Vu Duc Trung"
-                        },
-                        new
-                        {
-                            EmployeeID = 2,
-                            Adrress = "Thanh Hoa",
-                            Birthday = new DateTime(1997, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentID = 2,
-                            Email = "hung@gmail.com",
-                            FullName = "Nguyen Van Hung"
-                        },
-                        new
-                        {
-                            EmployeeID = 3,
-                            Adrress = "Nam Dinh",
-                            Birthday = new DateTime(1999, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentID = 3,
-                            Email = "nam@gmail.com",
-                            FullName = "Hoang Van Nam"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

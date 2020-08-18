@@ -11,7 +11,6 @@
   <ItemGroup>
     <ProjectReference Include="..\QuanLyNhanVien.Application\QuanLyNhanVien.Application.csproj" />
     <ProjectReference Include="..\QuanLyNhanVien.Data\QuanLyNhanVien.Core.csproj" />
-    <ProjectReference Include="..\QuanLyNhanVien.ViewModel\QuanLyNhanVien.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

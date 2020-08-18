@@ -14,8 +14,8 @@ namespace QuanLyNhanVien.Core.Configurations
         {
 
             builder.ToTable("Employees");
-            builder.HasKey(x => x.EmployeeID);
-            builder.Property(x => x.EmployeeID).UseIdentityColumn();
+            /*builder.HasKey(x => x.EmployeeID);
+            builder.Property(x => x.EmployeeID).UseIdentityColumn();*/
 
             builder.Property(x => x.FullName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Adrress).IsRequired().HasMaxLength(50);

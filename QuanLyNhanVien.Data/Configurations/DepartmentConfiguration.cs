@@ -12,8 +12,8 @@ namespace QuanLyNhanVien.Core.Configurations
         public void Configure(EntityTypeBuilder<Department> builder)
         {
             builder.ToTable("Departments");
-            builder.HasKey(x => x.DepartmentID);
-            builder.Property(x => x.DepartmentID).UseIdentityColumn();
+           /* builder.HasKey(x => x.DepartmentID);
+            builder.Property(x => x.DepartmentID).UseIdentityColumn();*/
 
             builder.Property(x => x.DepartmentName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Description).IsRequired().HasMaxLength(250);

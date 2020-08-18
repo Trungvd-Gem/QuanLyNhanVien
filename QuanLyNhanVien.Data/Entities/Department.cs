@@ -4,9 +4,9 @@ using System.Text;
 
 namespace QuanLyNhanVien.Core.Entities
 {
-    public class Department
+    public class Department: EntityBase
     {
-        public int DepartmentID { get; set; }
+        /*public int DepartmentID { get; set; }*/
         public string DepartmentName { get; set; }
         public string Description { get; set; }
 

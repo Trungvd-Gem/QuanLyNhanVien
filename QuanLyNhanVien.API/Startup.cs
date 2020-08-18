@@ -34,9 +34,13 @@ namespace QuanLyNhanVien.API
                 options.UseSqlServer(Configuration.GetConnectionString("QLNVSolutionDb")));
 
             //DI
-            services.AddScoped<IDepartmentService, DepartmentService>();
+            /*services.AddScoped<IDepartmentService, DepartmentService>();*/
             /*services.AddScoped(typeof(IRepository<>), typeof(Repository<>));*/
             //swagger
+
+            /*services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IDepartmentService, DepartmentService>();*/
+            ConfigureDependencyInjection(services);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Project_Frist", Version = "v1" });
@@ -106,6 +110,12 @@ namespace QuanLyNhanVien.API
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private static void ConfigureDependencyInjection(IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IDepartmentService, DepartmentService>();
         }
     }
 }

@@ -24,15 +24,15 @@ namespace QuanLyNhanVien.Core.Data
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
 
             // data seeding
-            modelBuilder.Entity<Department>().HasData(
+           /* modelBuilder.Entity<Department>().HasData(
                 new Department() { DepartmentID = 1, DepartmentName = "Kinh Doanh", Description = "Tăng lợi nhuận" },
                 new Department() { DepartmentID = 2, DepartmentName = "IT", Description = "Phát triển phần mềm" },
                 new Department() { DepartmentID = 3, DepartmentName = "Nhân sự", Description = "Tìm kiếm tài năng" }
 
 
-                ); 
+                ); */
 
-            modelBuilder.Entity<Employee>().HasData(
+            /*modelBuilder.Entity<Employee>().HasData(
                 new Employee() {   
                     EmployeeID = 1,
                     DepartmentID = 1,
@@ -60,8 +60,8 @@ namespace QuanLyNhanVien.Core.Data
                       Email = "nam@gmail.com"
                   }
 
-
-                );
+*/
+                /*);*/
 
                     base.OnModelCreating(modelBuilder);
         }

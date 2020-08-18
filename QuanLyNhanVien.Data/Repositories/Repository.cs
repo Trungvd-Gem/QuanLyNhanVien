@@ -30,6 +30,7 @@ namespace QuanLyNhanVien.Core.Repositories
 
         public async Task UpdateAsync(T entity)
         {
+            
             DbContext.Entry(entity).State = EntityState.Modified;
             await DbContext.SaveChangesAsync();
         }

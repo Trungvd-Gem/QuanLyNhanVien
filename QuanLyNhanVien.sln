@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyNhanVien.Core", "Quan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyNhanVien.Application", "QuanLyNhanVien.Application\QuanLyNhanVien.Application.csproj", "{1AA0E8C0-2568-46B3-9104-92BEB5D43086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyNhanVien.ViewModels", "QuanLyNhanVien.ViewModel\QuanLyNhanVien.ViewModels.csproj", "{FE755083-19E0-4C2D-BAAC-AAF5FC12B464}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyNhanVien.API", "QuanLyNhanVien.API\QuanLyNhanVien.API.csproj", "{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyNhanVien.API", "QuanLyNhanVien.API\QuanLyNhanVien.API.csproj", "{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{1AA0E8C0-2568-46B3-9104-92BEB5D43086}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AA0E8C0-2568-46B3-9104-92BEB5D43086}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AA0E8C0-2568-46B3-9104-92BEB5D43086}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE755083-19E0-4C2D-BAAC-AAF5FC12B464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE755083-19E0-4C2D-BAAC-AAF5FC12B464}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE755083-19E0-4C2D-BAAC-AAF5FC12B464}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE755083-19E0-4C2D-BAAC-AAF5FC12B464}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,8 +1,7 @@
-﻿using QuanLyNhanVien.ViewModels.Common;
-using QuanLyNhanVien.ViewModels.Departments;
+﻿using QuanLyNhanVien.Application.Departments.DTOs;
+using QuanLyNhanVien.ViewModels.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 
@@ -10,18 +9,17 @@ namespace QuanLyNhanVien.Application.Departments
 {
     public interface IDepartmentService
     {
-        Task<int> Create(DepartmentCreateRequest request);
-
-        Task<int> Update(DepartmentUpdateRequest request);
-
-        Task<int> Delete(int DepartmentId);
-
-        Task<DepartmentViewModel> GetAllDepartment(int pageIndex, int pageSize);
-
-
-        Task<PagedResult<DepartmentViewModel>> GetAllPaging(string keyword, int pageIndex, int pageSize, int order);
-
-
+        Task<DepartmentDTO> AddDepartmentAsync(DepartmentDTO department);
+        Task UpdateDepartmentAsync(DepartmentDTO department);
+        Task DeleteDepartmentAsync(Guid id);
         
+        Task<IEnumerable<DepartmentDTO>> GetAllAsync();
+
+        Task<PagedResult<DepartmentViewModel>> GetSearchPaging(string keyword, int pageIndex, int pageSize);
+        Task<PagedResult<DepartmentViewModel>> GetAllPaging(int pageIndex, int pageSize);
+
+        /*Task<DepartmentDTO> GetById(Guid id);*/
+
+
     }
 }

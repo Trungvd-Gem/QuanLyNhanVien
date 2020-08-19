@@ -76,16 +76,7 @@ namespace QuanLyNhanVien.Application
             return page;
         }
 
-        /*public async Task<DepartmentDTO> GetById(Guid id)
-        {
-            var department = await _repository.GetAsync(id);
-            var result = new DepartmentDTO()
-            {
-                DepartmentName = department.DepartmentName,
-                Description = department.Description
-            };
-            return result;
-        }*/
+        
 
         public async Task<PagedResult<DepartmentViewModel>> GetSearchPaging(string keyword, int pageIndex, int pageSize)
         {

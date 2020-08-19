@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyNhanVien.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyNhanVien.API", "QuanLyNhanVien.API\QuanLyNhanVien.API.csproj", "{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyNhanVien.WebApp", "QuanLyNhanVien.WebApp\QuanLyNhanVien.WebApp.csproj", "{A6554F21-BA3E-496B-9194-F68C393FE2E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5CAC2D2-0559-4E22-B5DE-11B4431A005B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6554F21-BA3E-496B-9194-F68C393FE2E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6554F21-BA3E-496B-9194-F68C393FE2E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6554F21-BA3E-496B-9194-F68C393FE2E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6554F21-BA3E-496B-9194-F68C393FE2E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

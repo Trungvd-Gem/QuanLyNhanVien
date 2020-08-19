@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuanLyNhanVien.Application.Departments;
@@ -12,6 +13,7 @@ namespace QuanLyNhanVien.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DepartmentController : ControllerBase
     {
         private readonly IDepartmentService _departmentService;
@@ -28,7 +30,7 @@ namespace QuanLyNhanVien.API.Controllers
             return Ok(dataDepartment);
         }
 
-        [HttpGet("{department}")]
+        [HttpGet("{department-paging}")]
         public async Task<IActionResult> GetAllPaging([FromQuery]  int pageIndex, int pageSize )
         {
             var result = await _departmentService.GetAllPaging(pageIndex, pageSize);

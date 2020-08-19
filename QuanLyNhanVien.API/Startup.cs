@@ -2,17 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using QuanLyNhanVien.Application;
 using QuanLyNhanVien.Application.Departments;
+using QuanLyNhanVien.Application.System.Users;
+using QuanLyNhanVien.Application.System.Users.DTOs;
 using QuanLyNhanVien.Core.Data;
+using QuanLyNhanVien.Core.Entities;
 using QuanLyNhanVien.Core.Repositories;
 
 namespace QuanLyNhanVien.API
@@ -29,17 +36,16 @@ namespace QuanLyNhanVien.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            
+
             services.AddDbContext<QuanLyNhanVienDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QLNVSolutionDb")));
+            services.AddIdentity<AppUser, AppRole>()
+               .AddEntityFrameworkStores<QuanLyNhanVienDbContext>()
+               .AddDefaultTokenProviders();
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
-            //DI
-            /*services.AddScoped<IDepartmentService, DepartmentService>();*/
-            /*services.AddScoped(typeof(IRepository<>), typeof(Repository<>));*/
-            //swagger
-
-            /*services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IDepartmentService, DepartmentService>();*/
             ConfigureDependencyInjection(services);
             services.AddSwaggerGen(c =>
             {
@@ -74,6 +80,32 @@ namespace QuanLyNhanVien.API
                       }
                     });
             });
+
+            string issuer = Configuration.GetValue<string>("Tokens:Issuer");
+            string signingKey = Configuration.GetValue<string>("Tokens:Key");
+            byte[] signingKeyBytes = System.Text.Encoding.UTF8.GetBytes(signingKey);
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = issuer,
+                    ValidateAudience = true,
+                    ValidAudience = issuer,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = System.TimeSpan.Zero,
+                    IssuerSigningKey = new SymmetricSecurityKey(signingKeyBytes)
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +124,7 @@ namespace QuanLyNhanVien.API
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -116,6 +149,10 @@ namespace QuanLyNhanVien.API
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddScoped<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }
